@@ -6,3 +6,4 @@ coverage/
 naia-agent.env
 *.log
 .DS_Store
+.code-review-graph/

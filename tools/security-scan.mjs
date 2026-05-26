@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
 const root = process.argv[2] ?? ".";
-const ignoredDirectories = new Set([".git", "node_modules", "dist", "coverage", ".next"]);
+const ignoredDirectories = new Set([".git", ".code-review-graph", "node_modules", "dist", "coverage", ".next"]);
 const ignoredFiles = new Set(["package-lock.json"]);
 const issues = [];
 

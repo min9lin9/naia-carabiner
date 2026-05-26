@@ -21,6 +21,7 @@ Supported profile families:
 
 ```sh
 node --test tests/auth-profiles.test.ts
+npm run typecheck
 node src/cli.ts kimi-api-key --format manifest
 node src/cli.ts kimi-api-key --format env
 node src/cli.ts openai-api-key --format manifest
@@ -41,3 +42,11 @@ credentials, non-HTTP schemes, and remote plain-HTTP endpoints.
 
 See [SECURITY.md](./SECURITY.md) and
 [docs/harness/level-3-security-review.md](./docs/harness/level-3-security-review.md).
+
+## Documentation
+
+- [Documentation Index](./docs/harness/documentation-index.md)
+- [Contributing](./CONTRIBUTING.md)
+- [Provider Auth Runbook](./docs/harness/provider-auth-runbook.md)
+- [Upstream naia-agent PR Plan](./docs/harness/upstream-naia-agent-pr-plan.md)
+- [ADR 0001: Auth Runtime Boundary](./docs/harness/adr-0001-auth-runtime-boundary.md)
