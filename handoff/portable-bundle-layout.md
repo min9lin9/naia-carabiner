@@ -54,10 +54,10 @@ Resolution order:
 Portable verification commands:
 
 ```sh
-node tools/validate-harness-run.mjs .
-node tools/harness-state-runner.mjs .
-node tools/evaluate-research-quality.mjs .
-node tools/pre-handoff-gate.mjs .
+node tools/validate-harness-run.ts .
+node tools/harness-state-runner.ts .
+node tools/evaluate-research-quality.ts .
+node tools/pre-handoff-gate.ts .
 ```
 
 Downstream project rule:

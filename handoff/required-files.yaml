@@ -35,31 +35,31 @@ required_files:
   - path: package.json
     purpose: Local validation scripts for executable harness checks.
     required: true
-  - path: tools/validate-harness-run.mjs
+  - path: tools/validate-harness-run.ts
     purpose: YAML parser backed validator for harness run artifacts.
     required: true
-  - path: tools/lib/yaml-lite.mjs
+  - path: tools/lib/yaml-lite.ts
     purpose: Dependency-free YAML parser used by harness validation tools.
     required: true
-  - path: tools/lib/schema-lite.mjs
+  - path: tools/lib/schema-lite.ts
     purpose: Lightweight schema validation helper used by harness validation tools.
     required: true
-  - path: tools/lib/harness-state.mjs
+  - path: tools/lib/harness-state.ts
     purpose: Shared state transition sequence and report builder.
     required: true
-  - path: tools/harness-state-runner.mjs
+  - path: tools/harness-state-runner.ts
     purpose: State transition runner that enforces pass, revise, or blocked stage statuses.
     required: true
-  - path: tools/evaluate-research-quality.mjs
+  - path: tools/evaluate-research-quality.ts
     purpose: Research-quality evaluator for freshness, evidence table, fact/estimate/judgment, and uncertainty policy.
     required: true
-  - path: tools/pre-handoff-gate.mjs
+  - path: tools/pre-handoff-gate.ts
     purpose: Pre-handoff gate that requires current validation before readiness claims.
     required: true
-  - path: tools/validate-fixtures.mjs
+  - path: tools/validate-fixtures.ts
     purpose: Regression fixture runner for positive and negative validator fixtures.
     required: true
-  - path: tools/build-portable-handoff-bundle.mjs
+  - path: tools/build-portable-handoff-bundle.ts
     purpose: Portable handoff bundle builder that copies run artifacts and required workspace files into a transferable directory.
     required: true
   - path: schemas/harness-run/classification.schema.json

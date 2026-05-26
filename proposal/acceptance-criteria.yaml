@@ -49,7 +49,7 @@ acceptance_criteria:
     status: pass
   - id: AC-013
     criterion: "Harness runs can be validated before handoff."
-    evidence: "tools/validate-harness-run.mjs parses YAML artifacts, applies schema-lite checks, validates the current run, validates a passing fixture, and rejects intentionally failing fixtures."
+    evidence: "tools/validate-harness-run.ts parses YAML artifacts, applies schema-lite checks, validates the current run, validates a passing fixture, and rejects intentionally failing fixtures."
     status: pass
   - id: AC-014
     criterion: "Meaningful runs perform Compound Extraction before archive."
@@ -61,13 +61,13 @@ acceptance_criteria:
     status: pass
   - id: AC-016
     criterion: "State transitions emit pass, revise, or blocked and prevent handoff when any stage is not pass."
-    evidence: "tools/harness-state-runner.mjs and npm run state:current report every current stage as pass."
+    evidence: "tools/harness-state-runner.ts and npm run state:current report every current stage as pass."
     status: pass
   - id: AC-017
     criterion: "Research-quality evaluation checks freshness, evidence table policy, and fact/estimate/judgment separation."
-    evidence: "tools/evaluate-research-quality.mjs and npm run research-quality:current validate source freshness/source-date policy, evidence table policy, fact/estimate/judgment separation, and uncertainty language."
+    evidence: "tools/evaluate-research-quality.ts and npm run research-quality:current validate source freshness/source-date policy, evidence table policy, fact/estimate/judgment separation, and uncertainty language."
     status: pass
   - id: AC-018
     criterion: "Pre-handoff gate requires npm run validate:current before handoff readiness."
-    evidence: "tools/pre-handoff-gate.mjs runs npm --silent run validate:current for the current package before state and research-quality checks."
+    evidence: "tools/pre-handoff-gate.ts runs npm --silent run validate:current for the current package before state and research-quality checks."
     status: pass

@@ -13,21 +13,21 @@ canonical_files_added:
     purpose: Prompt template for operating the harness-making harness.
   - path: package.json
     purpose: NPM scripts for harness validation.
-  - path: tools/validate-harness-run.mjs
+  - path: tools/validate-harness-run.ts
     purpose: YAML parser backed harness run validator.
-  - path: tools/lib/yaml-lite.mjs
+  - path: tools/lib/yaml-lite.ts
     purpose: Dependency-free YAML parser used by harness validation tools.
-  - path: tools/lib/schema-lite.mjs
+  - path: tools/lib/schema-lite.ts
     purpose: Lightweight schema validation helper used by harness validation tools.
-  - path: tools/lib/harness-state.mjs
+  - path: tools/lib/harness-state.ts
     purpose: Shared state transition sequence and report builder.
-  - path: tools/harness-state-runner.mjs
+  - path: tools/harness-state-runner.ts
     purpose: State transition runner for pass/revise/blocked checkpoints.
-  - path: tools/evaluate-research-quality.mjs
+  - path: tools/evaluate-research-quality.ts
     purpose: Research-quality evaluator for freshness, evidence, fact/estimate/judgment, and uncertainty checks.
-  - path: tools/pre-handoff-gate.mjs
+  - path: tools/pre-handoff-gate.ts
     purpose: Pre-handoff gate requiring current validation before readiness claims.
-  - path: tools/validate-fixtures.mjs
+  - path: tools/validate-fixtures.ts
     purpose: Regression fixture runner for positive and negative validator fixtures.
   - path: schemas/harness-run/classification.schema.json
     purpose: Classification schema target.

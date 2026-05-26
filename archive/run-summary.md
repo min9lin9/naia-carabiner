@@ -13,7 +13,7 @@ Updated the package to include `docs/harness/kimi-pm-iterative-debate-protocol.m
 
 Updated the package to include `docs/harness/deep-interview-intake-protocol.md` so ambiguous requests are clarified one question at a time before KIMI critique, PM-level debate, synthesis, CSO review, or QA review.
 
-Updated the package with `tools/validate-harness-run.mjs`, schema targets under `schemas/harness-run/`, and regression fixtures under `fixtures/harness-runs/`.
+Updated the package with `tools/validate-harness-run.ts`, schema targets under `schemas/harness-run/`, and regression fixtures under `fixtures/harness-runs/`.
 
 Updated the package to restore Compound Extraction as the post-operator-decision learning loop. The current run now includes reusable lessons, proposed future rules, recurring failure patterns, and operator approval candidates.
 

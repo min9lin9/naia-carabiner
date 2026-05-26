@@ -27,12 +27,15 @@ node src/cli.ts kimi-api-key --format env
 node src/cli.ts openai-api-key --format manifest
 node src/cli.ts openai-api-key --format env
 node src/cli.ts codex-sdk --format profile
-node tools/validate-harness-run.mjs .
-node tools/security-scan.mjs .
+node src/cli.ts kimi-api-key --format probe
+node src/cli.ts codex-sdk --format probe
+npm run ci
+npm run ci:harness
 ```
 
 `bun` is the intended runtime, but the current tests also run with Node's
-built-in test runner.
+built-in test runner. `npm run ci` is the lightweight contributor gate;
+`npm run ci:harness` runs the heavier bootstrap-harness validators.
 
 ## Security
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// @ts-nocheck
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -33,8 +34,8 @@ for (const entry of manifestEntries(fs.readFileSync(requiredFilesPath, "utf8")))
 }
 
 copyPath(
-  path.join(root, "tools", "build-portable-handoff-bundle.mjs"),
-  path.join(bundleDir, "tools", "build-portable-handoff-bundle.mjs")
+  path.join(root, "tools", "build-portable-handoff-bundle.ts"),
+  path.join(bundleDir, "tools", "build-portable-handoff-bundle.ts")
 );
 
 writeText(
@@ -48,10 +49,10 @@ This directory is a portable handoff bundle. Treat this directory as \`HANDOFF_B
 Portable verification commands:
 
 \`\`\`sh
-node tools/validate-harness-run.mjs .
-node tools/harness-state-runner.mjs .
-node tools/evaluate-research-quality.mjs .
-node tools/pre-handoff-gate.mjs .
+node tools/validate-harness-run.ts .
+node tools/harness-state-runner.ts .
+node tools/evaluate-research-quality.ts .
+node tools/pre-handoff-gate.ts .
 \`\`\`
 `
 );

@@ -5,7 +5,7 @@ approval_candidates:
     affected_files:
       - docs/harness/harness-maker-harness.md
       - docs/harness/compound-extraction-protocol.md
-      - tools/validate-harness-run.mjs
+      - tools/validate-harness-run.ts
     risk_level: low
     status: proposed
   - id: compound-rule-002

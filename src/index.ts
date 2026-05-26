@@ -48,6 +48,7 @@ const KIMI_DEFAULT_BASE_URL = "https://api.kimi.com/coding/v1";
 const KIMI_DEFAULT_MODEL = "kimi-for-coding";
 const OPENAI_DEFAULT_BASE_URL = "https://api.openai.com/v1";
 const OPENAI_DEFAULT_MODEL = "gpt-4.1";
+const CODEX_DEFAULT_MODEL = "gpt-5.5";
 const AUTH_PROFILE_KINDS = new Set<AuthProfileKind>([
   "kimi-api-key",
   "openai-api-key",
@@ -62,7 +63,7 @@ export function resolveAuthProfile(input: AuthProfileInput): AuthProfile {
     return {
       kind: input.kind,
       backend: "codex-local-agent",
-      model: input.model ?? "gpt-5.1-codex",
+      model: input.model ?? CODEX_DEFAULT_MODEL,
       allowlistHosts: [],
       envPlan: {},
       packageName: "@openai/codex-sdk",

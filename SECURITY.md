@@ -26,7 +26,7 @@ Changes touching authentication, secrets, provider routing, manifests, external 
 
 1. Security review with threat model notes.
 2. Tests for the auth/profile behavior.
-3. `node tools/security-scan.mjs .` before publish.
+3. `node tools/security-scan.ts .` before publish.
 4. A rollback or disable path for the affected profile.
 5. Explicit documentation of any residual risk.
 

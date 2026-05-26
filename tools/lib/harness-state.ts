@@ -1,3 +1,4 @@
+// @ts-nocheck
 export const stateSequence = [
   "HARNESS_MAKER_INTAKE",
   "DEEP_INTERVIEW_GATE",

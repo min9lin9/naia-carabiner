@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// @ts-nocheck
 import path from "node:path";
 import process from "node:process";
 import { spawnSync } from "node:child_process";
@@ -25,7 +26,7 @@ const fixtures = [
 
 function runFixture(fixture) {
   const result = spawnSync(process.execPath, [
-    path.join(root, "tools/validate-harness-run.mjs"),
+    path.join(root, "tools/validate-harness-run.ts"),
     fixture.path
   ], {
     cwd: root,

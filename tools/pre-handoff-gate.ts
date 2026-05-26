@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// @ts-nocheck
 import path from "node:path";
 import process from "node:process";
 import { spawnSync } from "node:child_process";
@@ -18,12 +19,12 @@ function buildChecks() {
         executable: "npm",
         args: ["--silent", "run", "validate:current"]
       }
-    : commandCheck("validate:run", "tools/validate-harness-run.mjs");
+    : commandCheck("validate:run", "tools/validate-harness-run.ts");
 
   return [
     validateCheck,
-    commandCheck("state:runner", "tools/harness-state-runner.mjs"),
-    commandCheck("research-quality", "tools/evaluate-research-quality.mjs")
+    commandCheck("state:runner", "tools/harness-state-runner.ts"),
+    commandCheck("research-quality", "tools/evaluate-research-quality.ts")
   ];
 }
 

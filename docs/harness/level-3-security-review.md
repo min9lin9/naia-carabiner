@@ -43,14 +43,14 @@ No live Kimi, OpenAI, or Codex model calls were made during this review.
 | L3-004 | Medium | `package.json` used `latest` for runtime and dev dependencies. | Pinned current npm versions: `@openai/codex-sdk` 0.133.0, `@types/bun` 1.3.14, `@types/node` 25.9.1, `typescript` 6.0.3. |
 | L3-005 | Medium | Public harness docs retained user-specific local absolute paths from the bootstrap bundle. | Replaced them with `$HARNESS_ROOT` and `$CODEX_REFERENCE_ROOT` handles. |
 | L3-006 | Medium | Kimi PM debate was requested but direct external execution was blocked by local policy. | Preserved a documented gate and did not claim Kimi participated. External debate remains blocked until an approved redaction/execution protocol exists. |
-| L3-007 | Low | Secret scanning was manual. | Added `tools/security-scan.mjs` and `npm run security:scan`. |
+| L3-007 | Low | Secret scanning was manual. | Added `tools/security-scan.ts` and `npm run security:scan`. |
 | L3-008 | Medium | Runtime CLI input could cast an unsupported profile kind into the typed resolver path. | Added runtime auth profile kind validation and a regression test. |
 
 ## Residual Risk
 
 - Bun is the intended package manager/runtime, but Bun is not installed in the current environment, so `bun test` and a Bun lockfile were not generated here.
-- No live `nextain/naia-agent` integration test was run in this repository yet.
-- `@openai/codex-sdk` integration is represented as a typed auth/runtime profile. Actual Codex session lifecycle code should be added only when the upstream UI and provider boundary are fixed.
+- Live `nextain/naia-agent` smoke tests are now available but still require explicit `NAIA_CARABINER_LIVE=1` and `NAIA_AGENT_BIN` opt-in.
+- `@openai/codex-sdk` integration now has package-import preflight and opt-in live smoke coverage; full upstream session lifecycle remains a future `naia-agent` boundary decision.
 - Kimi external review/debate remains policy-blocked in this environment despite operator intent.
 
 ## Contributor Readiness

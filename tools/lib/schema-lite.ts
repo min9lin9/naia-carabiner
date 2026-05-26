@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function validateSchema(value, schema, path = "$") {
   const failures = [];
   check(value, schema, path, failures);

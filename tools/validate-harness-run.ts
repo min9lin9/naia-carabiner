@@ -1,10 +1,11 @@
 #!/usr/bin/env node
+// @ts-nocheck
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
-import { parseYamlFile } from "./lib/yaml-lite.mjs";
-import { validateSchema } from "./lib/schema-lite.mjs";
-import { buildStateReport } from "./lib/harness-state.mjs";
+import { parseYamlFile } from "./lib/yaml-lite.ts";
+import { validateSchema } from "./lib/schema-lite.ts";
+import { buildStateReport } from "./lib/harness-state.ts";
 
 const root = process.cwd();
 const defaultRunDir = "output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker";

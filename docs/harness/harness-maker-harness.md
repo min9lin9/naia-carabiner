@@ -248,7 +248,7 @@ npm run prehandoff:current
 
 The pre-handoff gate makes `npm run validate:current` mandatory for the current package, then runs state-transition and research-quality checks.
 
-Use `tools/validate-harness-run.mjs` for direct run validation.
+Use `tools/validate-harness-run.ts` for direct run validation.
 
 Default current-run validation:
 

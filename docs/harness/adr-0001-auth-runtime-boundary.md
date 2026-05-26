@@ -26,7 +26,7 @@ The harness may generate `naia-agent` service manifests only for `openai-compati
 
 - `kimi-api-key` uses `KIMI_API_KEY`, `https://api.kimi.com/coding/v1`, and `kimi-for-coding`.
 - `openai-api-key` uses `OPENAI_API_KEY` and `https://api.openai.com/v1`.
-- `codex-sdk` and `gpt-auth` do not need API-key env output.
+- `codex-sdk` and `gpt-auth` do not need API-key env output and default to the current Codex recommended model family (`gpt-5.5`) until upstream policy changes.
 - UI and docs must distinguish API-key auth from ChatGPT/Codex login auth.
 - Unsafe provider URLs are rejected before manifest generation.
 

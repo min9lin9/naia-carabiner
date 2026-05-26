@@ -41,6 +41,7 @@ Add a contributor-grade auth/provider path to `nextain/naia-agent` that supports
 | 3 | Manifest safety checks | URL validation and manifest revalidation tests |
 | 4 | UI/host selector | profile family list and runbook |
 | 5 | Codex SDK boundary | `codex-sdk` profile and ADR |
+| 6 | Connectivity preflight | `probeAuthProfile` and `--format probe` CLI |
 
 ## Acceptance Criteria
 
@@ -50,7 +51,8 @@ Add a contributor-grade auth/provider path to `nextain/naia-agent` that supports
 - URLs with embedded credentials are rejected.
 - Codex SDK login mode does not emit an API-key service manifest.
 - UI copy distinguishes API key auth from ChatGPT/Codex login auth.
-- Tests cover Kimi defaults, OpenAI defaults, unsafe URL rejection, redaction, and Codex SDK manifest refusal.
+- Tests cover Kimi defaults, OpenAI defaults, unsafe URL rejection, redaction, Codex SDK manifest refusal, and probe preflight behavior.
+- Live smoke tests are available behind `NAIA_CARABINER_LIVE=1`.
 
 ## PR Description Draft
 
@@ -78,5 +80,6 @@ Adds an explicit auth/provider selection path for Kimi Code, OpenAI API-key, and
 ## Open Questions
 
 - Which `naia-agent` package should own the UI selector: host app, CLI, or runtime-adjacent package?
+- Which upstream command should be the canonical `NAIA_AGENT_BIN` target for live smoke tests?
 - Should provider allowlists live in service manifest validation, host env validation, or both?
 - Should Codex SDK support be optional peer dependency or a separate package boundary?

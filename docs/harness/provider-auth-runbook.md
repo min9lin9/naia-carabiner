@@ -20,6 +20,7 @@ Use this when the operator explicitly wants Kimi Code API-key execution.
 export KIMI_API_KEY=...
 node src/cli.ts kimi-api-key --format env
 node src/cli.ts kimi-api-key --format manifest
+node src/cli.ts kimi-api-key --format probe
 ```
 
 Expected behavior:
@@ -37,6 +38,7 @@ Use this when the operator wants OpenAI API-key execution through a `naia-agent`
 export OPENAI_API_KEY=...
 node src/cli.ts openai-api-key --format env
 node src/cli.ts openai-api-key --format manifest
+node src/cli.ts openai-api-key --format probe
 ```
 
 Expected behavior:
@@ -62,6 +64,7 @@ Use this when the operator wants Codex/ChatGPT login based local agent control.
 
 ```sh
 node src/cli.ts codex-sdk --format profile
+node src/cli.ts codex-sdk --format probe
 ```
 
 Expected behavior:
@@ -76,16 +79,19 @@ Expected behavior:
 Before publishing or handing off a profile:
 
 ```sh
-node --test tests/auth-profiles.test.ts
-node tools/security-scan.mjs .
+npm run ci
 ```
 
-For Level 3 changes, also run:
+For bootstrap-harness changes, also run:
 
 ```sh
-npm run typecheck
-node tools/validate-harness-run.mjs .
-node tools/validate-fixtures.mjs
+npm run ci:harness
+```
+
+For real provider smoke tests, opt in explicitly:
+
+```sh
+NAIA_CARABINER_LIVE=1 NAIA_AGENT_BIN=/path/to/naia-agent node --test tests/live-probe.test.ts
 ```
 
 ## Rollback
@@ -94,6 +100,6 @@ If a provider profile behaves unexpectedly:
 
 1. Stop using generated env output from the suspect profile.
 2. Remove any exported provider key from the current shell.
-3. Re-run `node tools/security-scan.mjs .`.
+3. Re-run `node tools/security-scan.ts .`.
 4. Revert only the profile or manifest change that introduced the behavior.
 5. Document the issue in `docs/harness/level-3-security-review.md` if it affects authentication, secrets, external calls, or public release readiness.

@@ -19,11 +19,13 @@ Do not duplicate provider implementations from `nextain/naia-agent`. This repo s
 Run these before opening a PR:
 
 ```sh
-node --test tests/auth-profiles.test.ts
-npm run typecheck
-node tools/security-scan.mjs .
-node tools/validate-harness-run.mjs .
-node tools/validate-fixtures.mjs
+npm run ci
+```
+
+For bootstrap-harness or handoff changes, also run:
+
+```sh
+npm run ci:harness
 ```
 
 `bun` is the intended runtime. In environments where Bun is installed, also run:
@@ -39,7 +41,7 @@ bun test
 - Use `OPENAI_API_KEY` for OpenAI API-key mode.
 - Use `codex-sdk` for ChatGPT/Codex login based local agent control.
 - Keep manifests free of secrets. They may contain provider base URLs and host allowlists only.
-- Run `node tools/security-scan.mjs .` after editing docs, manifests, or auth code.
+- Run `node tools/security-scan.ts .` after editing docs, manifests, or auth code.
 
 ## Documentation Rules
 
@@ -50,6 +52,7 @@ Update docs in the same PR when behavior changes:
 - `docs/harness/upstream-naia-agent-pr-plan.md` for upstream contribution shape.
 - `docs/harness/adr-0001-auth-runtime-boundary.md` when the auth/runtime boundary changes.
 - `docs/harness/level-3-security-review.md` for Level 3 security findings.
+- probe docs and tests when changing provider connectivity behavior.
 
 Use source handles such as `$HARNESS_ROOT` and `$CODEX_REFERENCE_ROOT` instead of user-specific absolute paths.
 

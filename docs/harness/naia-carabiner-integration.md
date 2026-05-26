@@ -63,7 +63,7 @@ bun run manifest:openai
 bun run env:openai
 bun run profile:codex
 node --test tests/auth-profiles.test.ts
-node tools/validate-harness-run.mjs .
+node tools/validate-harness-run.ts .
 ```
 
 `bun` is the intended runtime for this project. `node --test` remains as a local fallback for the current environment when Bun is not installed.

@@ -10,6 +10,7 @@ import {
   redactEnvPlan,
   resolveAuthProfile,
 } from "../src/index.ts";
+import { probeAuthProfile } from "../src/probe.ts";
 
 test("KIMI API-key profile defaults to Kimi Code without storing a secret", () => {
   const profile = resolveAuthProfile({ kind: "kimi-api-key" });
@@ -39,10 +40,10 @@ test("OpenAI API-key profile defaults to the OpenAI API without storing a secret
 });
 
 test("Codex SDK profile uses ChatGPT/Codex login without API key material", () => {
-  const profile = resolveAuthProfile({ kind: "codex-sdk", model: "gpt-5.1-codex" });
+  const profile = resolveAuthProfile({ kind: "codex-sdk", model: "gpt-5.5" });
 
   assert.equal(profile.backend, "codex-local-agent");
-  assert.equal(profile.model, "gpt-5.1-codex");
+  assert.equal(profile.model, "gpt-5.5");
   assert.equal(profile.apiKeyEnv, undefined);
   assert.deepEqual(profile.envPlan, {});
   assert.equal(profile.packageName, "@openai/codex-sdk");
@@ -53,6 +54,7 @@ test("legacy gpt-auth aliases Codex SDK login mode", () => {
   const profile = resolveAuthProfile({ kind: "gpt-auth" });
 
   assert.equal(profile.backend, "codex-local-agent");
+  assert.equal(profile.model, "gpt-5.5");
   assert.equal(profile.packageName, "@openai/codex-sdk");
 });
 
@@ -193,4 +195,52 @@ test("CLI rejects invalid profile kinds without a stack trace", () => {
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /unsupported auth profile kind/);
   assert.doesNotMatch(result.stderr, /at resolveAuthProfile/);
+});
+
+test("probe preflight succeeds for KIMI when key env is present without printing the secret", async () => {
+  const result = await probeAuthProfile({ kind: "kimi-api-key" }, {
+    env: { KIMI_API_KEY: "kimi-secret-value" },
+  });
+
+  assert.equal(result.ok, true);
+  assert.equal(result.profile, "kimi-api-key");
+  assert.equal(result.auth, "env-ref");
+  assert.equal(result.secretPrinted, false);
+  assert.equal(result.manifest?.llm.baseURL, "https://api.kimi.com/coding/v1");
+  assert.doesNotMatch(JSON.stringify(result), /kimi-secret-value/);
+});
+
+test("probe preflight reports missing API-key env without live calls", async () => {
+  const result = await probeAuthProfile({ kind: "openai-api-key" }, { env: {} });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.errorCode, "missing_env");
+  assert.equal(result.retryable, false);
+  assert.equal(result.checks.some((check) => check.name === "naia_agent_live_probe" && check.skipped), true);
+});
+
+test("probe preflight validates Codex SDK package without API key material", async () => {
+  const result = await probeAuthProfile({ kind: "codex-sdk" });
+
+  assert.equal(result.profile, "codex-sdk");
+  assert.equal(result.backend, "codex-local-agent");
+  assert.equal(result.model, "gpt-5.5");
+  assert.equal(result.auth, "codex-login-or-api-key");
+  assert.equal(result.secretPrinted, false);
+  assert.equal(result.checks.some((check) => check.name === "codex_sdk_import"), true);
+});
+
+test("CLI probe emits JSON and exits zero when env preflight passes", () => {
+  const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+  const result = spawnSync(
+    process.execPath,
+    ["src/cli.ts", "kimi-api-key", "--format", "probe"],
+    { cwd: repoRoot, encoding: "utf8", env: { ...process.env, KIMI_API_KEY: "kimi-secret-value" } },
+  );
+
+  assert.equal(result.status, 0);
+  const parsed = JSON.parse(result.stdout);
+  assert.equal(parsed.ok, true);
+  assert.equal(parsed.secretPrinted, false);
+  assert.doesNotMatch(result.stdout, /kimi-secret-value/);
 });

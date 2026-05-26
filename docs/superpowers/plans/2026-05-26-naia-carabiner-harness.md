@@ -6,7 +6,7 @@
 
 **Architecture:** Keep the extracted harness-maker docs and validation scripts as canonical governance inputs. Add a small TypeScript domain layer that classifies runs, resolves auth profiles without storing secrets, and emits naia-agent-compatible service manifest data. Tests cover configuration and validation behavior before any live model calls.
 
-**Tech Stack:** Bun, TypeScript, Bun test, local JSON/YAML-free structured config, existing Node `.mjs` harness validation tools.
+**Tech Stack:** Bun, TypeScript, Bun test, local JSON/YAML-free structured config, existing Node `.ts` harness validation tools.
 
 ---
 
