@@ -28,7 +28,8 @@ Expected behavior:
 - generated env output references `${KIMI_API_KEY}`;
 - manifest uses `https://api.kimi.com/coding/v1`;
 - model defaults to `kimi-for-coding`;
-- no raw key is printed by profile or manifest output.
+- no raw key is printed by profile or manifest output;
+- custom endpoints are rejected for this named profile. Use `openai-compatible` with an explicit provider-specific env var for non-Kimi endpoints.
 
 ## OpenAI API-Key Mode
 
@@ -45,7 +46,8 @@ Expected behavior:
 
 - generated env output references `${OPENAI_API_KEY}`;
 - manifest uses `https://api.openai.com/v1`;
-- no raw key is printed by profile or manifest output.
+- no raw key is printed by profile or manifest output;
+- custom endpoints are rejected for this named profile. Use `openai-compatible` with an explicit provider-specific env var for compatible endpoints.
 
 ## OpenAI-Compatible Override
 
@@ -56,7 +58,7 @@ export LOCAL_API_KEY=...
 node src/cli.ts openai-compatible --base-url http://127.0.0.1:11434/v1 --api-key-env LOCAL_API_KEY --format profile
 ```
 
-Remote provider URLs must use HTTPS. Plain HTTP is allowed only for loopback hosts: `localhost`, `127.*`, or `::1`. URLs with embedded credentials are rejected.
+Remote provider URLs must use HTTPS. Plain HTTP is allowed only for loopback hosts: `localhost`, `127.*`, or `::1`. URLs with embedded credentials are rejected. Custom endpoints require an explicit `--api-key-env`; the harness will not pair default `KIMI_API_KEY` or `OPENAI_API_KEY` values with arbitrary hosts.
 
 ## Codex SDK Login Mode
 

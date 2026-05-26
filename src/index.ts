@@ -70,22 +70,18 @@ export function resolveAuthProfile(input: AuthProfileInput): AuthProfile {
     };
   }
 
-  const defaults = input.kind === "kimi-api-key"
-    ? {
-      model: KIMI_DEFAULT_MODEL,
-      baseURL: KIMI_DEFAULT_BASE_URL,
-      apiKeyEnv: "KIMI_API_KEY",
-    }
-    : {
-      model: OPENAI_DEFAULT_MODEL,
-      baseURL: OPENAI_DEFAULT_BASE_URL,
-      apiKeyEnv: "OPENAI_API_KEY",
-    };
+  const defaults = apiKeyDefaultsFor(input.kind);
+  const apiKeyEnvOverride = nonEmpty(input.apiKeyEnv);
+  const endpoint = resolveProviderEndpoint({
+    kind: input.kind,
+    requestedBaseURL: input.baseURL,
+    defaultBaseURL: defaults.baseURL,
+    apiKeyEnvOverride,
+  });
 
   const model = nonEmpty(input.model) ?? defaults.model;
-  const requestedBaseURL = nonEmpty(input.baseURL) ?? defaults.baseURL;
-  const apiKeyEnv = assertEnvReference(nonEmpty(input.apiKeyEnv) ?? defaults.apiKeyEnv);
-  const { baseURL, host } = assertTrustedBaseURL(requestedBaseURL);
+  const apiKeyEnv = assertEnvReference(apiKeyEnvOverride ?? defaults.apiKeyEnv);
+  const { baseURL, host } = endpoint;
 
   return {
     kind: input.kind,
@@ -125,7 +121,8 @@ export function buildNaiaServiceManifest(profile: AuthProfile): NaiaServiceManif
     persona: {
       systemPrompt: [
         "You are operating through naia-agent.",
-        "Follow the local harness classification, keep secrets out of manifests, and treat KIMI/OpenAI-compatible calls as operator-approved external LLM calls.",
+        "Follow the local harness classification, keep secrets out of manifests,",
+        "and treat KIMI/OpenAI-compatible calls as operator-approved external LLM calls.",
       ].join(" "),
     },
     llm,
@@ -154,6 +151,50 @@ export function formatShellEnvPlan(envPlan: Record<string, string>): string[] {
 
 function shellQuote(value: string): string {
   return `'${value.replaceAll("'", "'\\''")}'`;
+}
+
+function apiKeyDefaultsFor(kind: AuthProfileKind): { model: string; baseURL: string; apiKeyEnv: string } {
+  if (kind === "kimi-api-key") {
+    return {
+      model: KIMI_DEFAULT_MODEL,
+      baseURL: KIMI_DEFAULT_BASE_URL,
+      apiKeyEnv: "KIMI_API_KEY",
+    };
+  }
+
+  return {
+    model: OPENAI_DEFAULT_MODEL,
+    baseURL: OPENAI_DEFAULT_BASE_URL,
+    apiKeyEnv: "OPENAI_API_KEY",
+  };
+}
+
+function resolveProviderEndpoint(input: {
+  kind: AuthProfileKind;
+  requestedBaseURL?: string;
+  defaultBaseURL: string;
+  apiKeyEnvOverride?: string;
+}): { baseURL: string; host: string } {
+  const defaultEndpoint = assertTrustedBaseURL(input.defaultBaseURL);
+  const requestedBaseURL = nonEmpty(input.requestedBaseURL);
+  if (!requestedBaseURL) return defaultEndpoint;
+
+  const requestedEndpoint = assertTrustedBaseURL(requestedBaseURL);
+  if (isFixedProviderProfileKind(input.kind) && requestedEndpoint.baseURL !== defaultEndpoint.baseURL) {
+    throw new Error(`${input.kind} uses a fixed provider endpoint; use openai-compatible for custom baseURL`);
+  }
+
+  if (input.kind === "openai-compatible"
+    && requestedEndpoint.baseURL !== defaultEndpoint.baseURL
+    && !input.apiKeyEnvOverride) {
+    throw new Error("custom openai-compatible baseURL requires apiKeyEnv");
+  }
+
+  return requestedEndpoint;
+}
+
+function isFixedProviderProfileKind(kind: AuthProfileKind): boolean {
+  return kind === "kimi-api-key" || kind === "openai-api-key";
 }
 
 function nonEmpty(value: string | undefined): string | undefined {

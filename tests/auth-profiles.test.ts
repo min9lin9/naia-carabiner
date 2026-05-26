@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { dirname, resolve } from "node:path";
+import { chmod, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
@@ -108,6 +110,24 @@ test("OpenAI API-key profile emits a naia-agent service manifest", () => {
   assert.equal(manifest.llm.baseURL, "https://api.openai.com/v1");
 });
 
+test("named API-key profiles reject custom provider endpoints", () => {
+  assert.throws(
+    () => resolveAuthProfile({ kind: "kimi-api-key", baseURL: "https://attacker.example/v1" }),
+    /fixed provider endpoint/,
+  );
+  assert.throws(
+    () => resolveAuthProfile({ kind: "openai-api-key", baseURL: "https://attacker.example/v1" }),
+    /fixed provider endpoint/,
+  );
+});
+
+test("custom OpenAI-compatible endpoints require an explicit API-key env", () => {
+  assert.throws(
+    () => resolveAuthProfile({ kind: "openai-compatible", baseURL: "https://proxy.example/v1" }),
+    /requires apiKeyEnv/,
+  );
+});
+
 test("provider profile rejects base URLs with embedded credentials", () => {
   assert.throws(
     () => resolveAuthProfile({
@@ -197,6 +217,31 @@ test("CLI rejects invalid profile kinds without a stack trace", () => {
   assert.doesNotMatch(result.stderr, /at resolveAuthProfile/);
 });
 
+test("CLI accepts flag-first invocation with the default profile kind", () => {
+  const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+  const result = spawnSync(
+    process.execPath,
+    ["src/cli.ts", "--format", "profile"],
+    { cwd: repoRoot, encoding: "utf8" },
+  );
+
+  assert.equal(result.status, 0, result.stderr);
+  const parsed = JSON.parse(result.stdout);
+  assert.equal(parsed.kind, "kimi-api-key");
+});
+
+test("CLI rejects flags without values", () => {
+  const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+  const result = spawnSync(
+    process.execPath,
+    ["src/cli.ts", "kimi-api-key", "--format"],
+    { cwd: repoRoot, encoding: "utf8" },
+  );
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /--format requires a value/);
+});
+
 test("probe preflight succeeds for KIMI when key env is present without printing the secret", async () => {
   const result = await probeAuthProfile({ kind: "kimi-api-key" }, {
     env: { KIMI_API_KEY: "kimi-secret-value" },
@@ -228,6 +273,29 @@ test("probe preflight validates Codex SDK package without API key material", asy
   assert.equal(result.auth, "codex-login-or-api-key");
   assert.equal(result.secretPrinted, false);
   assert.equal(result.checks.some((check) => check.name === "codex_sdk_import"), true);
+});
+
+test("live naia-agent probe detects secret material in process output", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "naia-carabiner-test-"));
+  try {
+    const bin = join(dir, "fake-naia-agent");
+    await writeFile(bin, "#!/bin/sh\necho \"$KIMI_API_KEY\"\necho NAIA_CARABINER_PROBE_OK\n");
+    await chmod(bin, 0o700);
+
+    const result = await probeAuthProfile({ kind: "kimi-api-key" }, {
+      live: true,
+      naiaAgentBin: bin,
+      env: { KIMI_API_KEY: "kimi-secret-value" },
+    });
+
+    assert.equal(result.ok, false);
+    assert.equal(result.secretPrinted, true);
+    assert.equal(result.errorCode, "secret_printed");
+    assert.equal(result.checks.some((check) => check.name === "naia_agent_live_probe" && !check.ok), true);
+    assert.doesNotMatch(JSON.stringify(result), /kimi-secret-value/);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
 });
 
 test("CLI probe emits JSON and exits zero when env preflight passes", () => {

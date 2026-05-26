@@ -14,7 +14,7 @@
 
 ## Provider URL Rules
 
-OpenAI-compatible provider profiles must use `https` unless the host is local loopback (`localhost`, `127.*`, or `::1`). Provider URLs with embedded credentials are rejected. Generated manifests carry only the base URL and host allowlist, not credentials.
+OpenAI-compatible provider profiles must use `https` unless the host is local loopback (`localhost`, `127.*`, or `::1`). Provider URLs with embedded credentials are rejected. Named `kimi-api-key` and `openai-api-key` profiles are fixed to their canonical provider endpoints; custom endpoints must use `openai-compatible` with an explicit provider-specific `apiKeyEnv`. Generated manifests carry only the base URL and host allowlist, not credentials.
 
 ## External Model Calls
 
