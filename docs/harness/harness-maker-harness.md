@@ -2,7 +2,7 @@
 
 Status: active canonical
 Role: meta-harness contract
-Scope: `/Users/burt/Documents/har-maker`
+Scope: `$HARNESS_ROOT`
 
 ## Purpose
 
@@ -91,7 +91,7 @@ Each loop must record participant `ready_for_synthesis` values and final `round_
 
 Research harness work must use `docs/harness/research-reference-corpus.md`.
 
-The corpus includes the upstream foundation prompt `/Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md` and `/Users/burt/Documents/Codex/2026-05-18/2-kimi-cli-pm-linear-ai/docs/` as required references. That docs root must be treated as a general research-harness source, not as bio BD-only material.
+The corpus includes the upstream foundation prompt `$CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md` and `$CODEX_REFERENCE_ROOT/2026-05-18/2-kimi-cli-pm-linear-ai/docs/` as required references. That docs root must be treated as a general research-harness source, not as bio BD-only material.
 
 When building a research harness, consider at least these format families:
 

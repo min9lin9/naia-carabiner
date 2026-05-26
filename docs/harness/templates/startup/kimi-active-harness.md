@@ -2,7 +2,7 @@
 template_id: kimi-active-harness-startup
 version: 0.1.0
 variant: kimi-active
-source_prompt: /Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md
+source_prompt: $CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md
 ---
 
 Role:

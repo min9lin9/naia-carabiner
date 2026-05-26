@@ -5,7 +5,7 @@ Terminal state: `READY_FOR_HANDOFF`
 
 ## Summary
 
-Created a local handoff package for operating `/Users/burt/Documents/har-maker` as a harness-making harness. The package is file-based and does not write external records.
+Created a local handoff package for operating `$HARNESS_ROOT` as a harness-making harness. The package is file-based and does not write external records.
 
 Updated the package to include `docs/harness/research-reference-corpus.md` so future research harness work considers global BD, finance, company, industry/market, free global-report, and operator-facing decision brief formats.
 

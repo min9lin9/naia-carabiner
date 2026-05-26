@@ -2,7 +2,7 @@
 
 Status: active canonical
 Role: reference corpus policy
-Scope: `/Users/burt/Documents/har-maker`
+Scope: `$HARNESS_ROOT`
 
 ## Purpose
 
@@ -16,7 +16,7 @@ The corpus is not limited to bio BD. Bio BD documents are useful as high-rigor r
 
 Primary source prompt:
 
-`/Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md`
+`$CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md`
 
 Use this as the upstream harness prompt reference when checking whether local contracts preserve intended behavior.
 
@@ -24,7 +24,7 @@ Use this as the upstream harness prompt reference when checking whether local co
 
 Primary docs root:
 
-`/Users/burt/Documents/Codex/2026-05-18/2-kimi-cli-pm-linear-ai/docs/`
+`$CODEX_REFERENCE_ROOT/2026-05-18/2-kimi-cli-pm-linear-ai/docs/`
 
 Use this as a required reference corpus for research harness work, not as a bio BD-only source.
 

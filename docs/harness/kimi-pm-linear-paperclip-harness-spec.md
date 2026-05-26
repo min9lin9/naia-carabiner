@@ -18,8 +18,8 @@ Harness variants are governed by `docs/harness/harness-reference-and-variant-pol
 
 Default source prompts:
 
-- KIMI-active: `/Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md`
-- No-KIMI: `/Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1-no-kimi.md`
+- KIMI-active: `$CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md`
+- No-KIMI: `$CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1-no-kimi.md`
 
 Every run must record:
 

@@ -2,7 +2,7 @@
 
 Status: active canonical
 Role: KIMI debate protocol
-Scope: `/Users/burt/Documents/har-maker`
+Scope: `$HARNESS_ROOT`
 
 ## Purpose
 

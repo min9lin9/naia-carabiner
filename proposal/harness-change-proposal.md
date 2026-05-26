@@ -65,7 +65,7 @@ The pre-handoff gate makes `npm run validate:current` mandatory for the current 
 
 ## Reference Corpus Impact
 
-Research harness work now has an explicit corpus policy. The upstream foundation prompt `/Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md` and `/Users/burt/Documents/Codex/2026-05-18/2-kimi-cli-pm-linear-ai/docs/` must be considered when designing research harness behavior.
+Research harness work now has an explicit corpus policy. The upstream foundation prompt `$CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md` and `$CODEX_REFERENCE_ROOT/2026-05-18/2-kimi-cli-pm-linear-ai/docs/` must be considered when designing research harness behavior.
 
 The docs root must not be treated as bio BD-only. Global BD formats are retained as rigor and synthesis precedents, while finance research, company research, industry/market research, free global reports, and operator-facing decision briefs are required format families for general-purpose research harness design.
 

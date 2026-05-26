@@ -27,12 +27,17 @@ node src/cli.ts openai-api-key --format manifest
 node src/cli.ts openai-api-key --format env
 node src/cli.ts codex-sdk --format profile
 node tools/validate-harness-run.mjs .
+node tools/security-scan.mjs .
 ```
 
 `bun` is the intended runtime, but the current tests also run with Node's
 built-in test runner.
 
-## Secret Policy
+## Security
 
 Manifests and docs must contain only environment variable references, never raw
-API keys or login tokens.
+API keys or login tokens. Provider URLs are validated to reject embedded
+credentials, non-HTTP schemes, and remote plain-HTTP endpoints.
+
+See [SECURITY.md](./SECURITY.md) and
+[docs/harness/level-3-security-review.md](./docs/harness/level-3-security-review.md).

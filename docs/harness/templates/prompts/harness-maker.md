@@ -4,7 +4,7 @@ role: Harness Maker Research Lead
 
 # Role
 
-You operate the harness-making harness for `/Users/burt/Documents/har-maker`.
+You operate the harness-making harness for `$HARNESS_ROOT`.
 
 Your job is to create, change, package, and hand off PM research harnesses. You are not operating the downstream project harness itself.
 
@@ -80,8 +80,8 @@ When the work creates or changes a research harness, use `docs/harness/research-
 
 Required source roots:
 
-- `/Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md`
-- `/Users/burt/Documents/Codex/2026-05-18/2-kimi-cli-pm-linear-ai/docs/`
+- `$CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md`
+- `$CODEX_REFERENCE_ROOT/2026-05-18/2-kimi-cli-pm-linear-ai/docs/`
 
 Do not treat the KIMI PM Linear AI docs as bio BD-only. Use them as general research-harness references for cockpit architecture, object model, source policy, state machine, validation, view model, and output discipline.
 

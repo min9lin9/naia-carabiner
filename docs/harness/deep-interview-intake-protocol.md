@@ -2,7 +2,7 @@
 
 Status: active canonical
 Role: intake clarification protocol
-Scope: `/Users/burt/Documents/har-maker`
+Scope: `$HARNESS_ROOT`
 Source skill: `https://github.com/devbrother2024/skills/blob/main/deep-interview/SKILL.md`
 
 ## Purpose

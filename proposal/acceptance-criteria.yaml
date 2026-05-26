@@ -25,7 +25,7 @@ acceptance_criteria:
     status: pass
   - id: AC-007
     criterion: "KIMI PM Linear AI docs are treated as a general research-harness corpus, not bio BD-only."
-    evidence: "docs/harness/research-reference-corpus.md and handoff/downstream-chat-brief.md state /Users/burt/Documents/Codex/2026-05-18/2-kimi-cli-pm-linear-ai/docs/ is required beyond bio BD."
+    evidence: "docs/harness/research-reference-corpus.md and handoff/downstream-chat-brief.md state $CODEX_REFERENCE_ROOT/2026-05-18/2-kimi-cli-pm-linear-ai/docs/ is required beyond bio BD."
     status: pass
   - id: AC-008
     criterion: "The upstream foundation prompt is recorded for research harness behavior checks."

@@ -13,8 +13,8 @@ Define which references guide the harness and how to derive request-specific har
 
 Use these first:
 
-- `/Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md`
-- `/Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1-no-kimi.md`
+- `$CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md`
+- `$CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1-no-kimi.md`
 - `docs/harness/kimi-pm-linear-paperclip-harness-spec.md`
 - `docs/superpowers/specs/2026-05-20-research-lead-agent-design.md`
 - `docs/harness/kimi-pm-linear-paperclip-harness-bootstrap-handoff-run.md`

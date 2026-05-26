@@ -48,8 +48,16 @@ const KIMI_DEFAULT_BASE_URL = "https://api.kimi.com/coding/v1";
 const KIMI_DEFAULT_MODEL = "kimi-for-coding";
 const OPENAI_DEFAULT_BASE_URL = "https://api.openai.com/v1";
 const OPENAI_DEFAULT_MODEL = "gpt-4.1";
+const AUTH_PROFILE_KINDS = new Set<AuthProfileKind>([
+  "kimi-api-key",
+  "openai-api-key",
+  "openai-compatible",
+  "codex-sdk",
+  "gpt-auth",
+]);
 
 export function resolveAuthProfile(input: AuthProfileInput): AuthProfile {
+  assertAuthProfileKind(input.kind);
   if (input.kind === "codex-sdk" || input.kind === "gpt-auth") {
     return {
       kind: input.kind,
@@ -74,9 +82,9 @@ export function resolveAuthProfile(input: AuthProfileInput): AuthProfile {
     };
 
   const model = nonEmpty(input.model) ?? defaults.model;
-  const baseURL = nonEmpty(input.baseURL) ?? defaults.baseURL;
+  const requestedBaseURL = nonEmpty(input.baseURL) ?? defaults.baseURL;
   const apiKeyEnv = assertEnvReference(nonEmpty(input.apiKeyEnv) ?? defaults.apiKeyEnv);
-  const host = new URL(baseURL).host;
+  const { baseURL, host } = assertTrustedBaseURL(requestedBaseURL);
 
   return {
     kind: input.kind,
@@ -97,6 +105,14 @@ export function buildNaiaServiceManifest(profile: AuthProfile): NaiaServiceManif
     throw new Error("codex-local-agent profiles use @openai/codex-sdk and do not emit naia-agent service manifests");
   }
 
+  const llm: NaiaServiceManifest["llm"] = {
+    backend: profile.backend,
+    model: profile.model,
+  };
+  if (profile.baseURL) {
+    llm.baseURL = assertTrustedBaseURL(profile.baseURL).baseURL;
+  }
+
   return {
     schemaVersion: "0.1.0",
     name: profile.kind === "kimi-api-key"
@@ -111,11 +127,7 @@ export function buildNaiaServiceManifest(profile: AuthProfile): NaiaServiceManif
         "Follow the local harness classification, keep secrets out of manifests, and treat KIMI/OpenAI-compatible calls as operator-approved external LLM calls.",
       ].join(" "),
     },
-    llm: {
-      backend: profile.backend,
-      model: profile.model,
-      ...(profile.baseURL ? { baseURL: profile.baseURL } : {}),
-    },
+    llm,
     memory: {
       binding: "in-memory",
     },
@@ -148,11 +160,55 @@ function nonEmpty(value: string | undefined): string | undefined {
   return trimmed ? trimmed : undefined;
 }
 
+function assertAuthProfileKind(kind: string): asserts kind is AuthProfileKind {
+  if (!AUTH_PROFILE_KINDS.has(kind as AuthProfileKind)) {
+    throw new Error("unsupported auth profile kind");
+  }
+}
+
 function assertEnvReference(value: string): string {
   if (!/^[A-Z_][A-Z0-9_]*$/.test(value)) {
-    throw new Error(`apiKeyEnv must be an environment variable name, got ${value}`);
+    throw new Error("apiKeyEnv must be an environment variable name");
   }
   return value;
+}
+
+function assertTrustedBaseURL(value: string): { baseURL: string; host: string } {
+  let parsed: URL;
+  try {
+    parsed = new URL(value);
+  } catch {
+    throw new Error("baseURL must be a valid URL");
+  }
+
+  if (parsed.username || parsed.password) {
+    throw new Error("baseURL must not include embedded credentials");
+  }
+
+  if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+    throw new Error("baseURL must use http or https");
+  }
+
+  if (parsed.protocol === "http:" && !isLoopbackHostname(parsed.hostname)) {
+    throw new Error("baseURL must use https unless the host is local loopback");
+  }
+
+  if (!parsed.hostname) {
+    throw new Error("baseURL must include a host");
+  }
+
+  return {
+    baseURL: parsed.href.endsWith("/") ? parsed.href.slice(0, -1) : parsed.href,
+    host: parsed.host,
+  };
+}
+
+function isLoopbackHostname(hostname: string): boolean {
+  const normalized = hostname.toLowerCase();
+  return normalized === "localhost"
+    || normalized === "[::1]"
+    || normalized === "::1"
+    || normalized.startsWith("127.");
 }
 
 function shouldRedact(key: string, value: string): boolean {

@@ -20,7 +20,7 @@ Second follow-up:
 
 ## Normalized Goal
 
-Make `/Users/burt/Documents/har-maker` operate as a harness-making harness: a local workspace that can create, change, package, and hand off PM research harnesses without turning into an unbounded self-development loop.
+Make `$HARNESS_ROOT` operate as a harness-making harness: a local workspace that can create, change, package, and hand off PM research harnesses without turning into an unbounded self-development loop.
 
 ## Context
 

@@ -67,8 +67,8 @@ run_artifacts_added:
   - path: fixtures/harness-runs/invalid-compound-active/harness-maker/classification.yaml
 external_records_written: false
 external_reference_corpora:
-  - path: /Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md
-  - path: /Users/burt/Documents/Codex/2026-05-18/2-kimi-cli-pm-linear-ai/docs/
+  - path: $CODEX_REFERENCE_ROOT/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md
+  - path: $CODEX_REFERENCE_ROOT/2026-05-18/2-kimi-cli-pm-linear-ai/docs/
 external_skill_references:
   - url: https://github.com/devbrother2024/skills/blob/main/deep-interview/SKILL.md
     purpose: Source skill for one-question-at-a-time intake clarification.

@@ -2,7 +2,7 @@
 
 Status: active canonical
 Role: learning loop protocol
-Scope: `/Users/burt/Documents/har-maker`
+Scope: `$HARNESS_ROOT`
 
 ## Purpose
 
