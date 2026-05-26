@@ -1,0 +1,4 @@
+acceptance_criteria:
+  - id: valid-local-complete
+    description: Valid local-only fixture contains all required harness artifacts.
+    status: pass

@@ -1,0 +1,8 @@
+{
+  "status": "pass",
+  "generated_at": "2026-05-25T07:27:57.134Z",
+  "source_run_dir": "output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker",
+  "bundle_dir": "output/portable-handoff-bundles/2026-05-20-harness-maker-bootstrap-harness-maker",
+  "copied_count": 55,
+  "missing": []
+}

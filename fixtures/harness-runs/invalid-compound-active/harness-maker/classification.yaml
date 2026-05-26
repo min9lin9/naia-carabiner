@@ -1,0 +1,16 @@
+harness_variant: local-only
+variant_source_prompt: "fixture invalid compound active"
+purpose_variant: bootstrap_handoff
+task_profile: normal
+friction_level: 2
+kimi_cli_decision: skip
+kimi_cli_reason: "Local handoff artifact packaging; no external collaborator, KIMI CLI approval, or full-access KIMI work product required."
+deep_interview_required: false
+deep_interview_reason: "Operator gave a direct apply request for an already evaluated protocol change."
+compound_extraction_required: true
+compound_extraction_reason: "Bootstrap handoff and implementation work at friction level 2 must extract reusable lessons and future-rule candidates."
+required_evidence:
+  - "All paths listed in handoff/required-files.yaml resolve in the workspace."
+  - "Handoff packet includes startup prompt, operator checklist, and source-of-truth split."
+  - "No real Linear or Paperclip records were written."
+evidence_gate_status: pass

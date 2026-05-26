@@ -1,0 +1,117 @@
+required_files:
+  - path: AGENTS.md
+    purpose: Operator contract and required first-action classification.
+    required: true
+  - path: docs/harness/harness-maker-harness.md
+    purpose: Canonical local contract for creating, changing, packaging, and handing off harnesses.
+    required: true
+  - path: docs/harness/deep-interview-intake-protocol.md
+    purpose: Intake clarification protocol for ambiguous requests before KIMI critique and PM-level debate.
+    required: true
+  - path: docs/harness/compound-extraction-protocol.md
+    purpose: Learning loop protocol for reusable lessons, recurring failure patterns, proposed future rules, and operator approval candidates.
+    required: true
+  - path: docs/harness/research-reference-corpus.md
+    purpose: Required reference corpus policy for research harness design, including BD, finance, company, and free global-report formats.
+    required: true
+  - path: docs/harness/kimi-pm-iterative-debate-protocol.md
+    purpose: KIMI one-time collaborator critique and PM-level iterative debate protocol with a 20-round cap.
+    required: true
+  - path: docs/harness/harness-reference-and-variant-policy.md
+    purpose: Reference hierarchy, official-doc/expert-commentary usage, and variant selection.
+    required: true
+  - path: docs/harness/kimi-pm-linear-paperclip-harness-spec.md
+    purpose: Canonical PM research harness operating contract.
+    required: true
+  - path: docs/superpowers/specs/2026-05-20-research-lead-agent-design.md
+    purpose: Research Lead coordinator design.
+    required: true
+  - path: docs/harness/templates/prompts/research-lead.md
+    purpose: Research Lead prompt template.
+    required: true
+  - path: docs/harness/kimi-pm-linear-paperclip-harness-bootstrap-handoff-run.md
+    purpose: Bootstrap and downstream handoff contract.
+    required: true
+  - path: package.json
+    purpose: Local validation scripts for executable harness checks.
+    required: true
+  - path: tools/validate-harness-run.mjs
+    purpose: YAML parser backed validator for harness run artifacts.
+    required: true
+  - path: tools/lib/yaml-lite.mjs
+    purpose: Dependency-free YAML parser used by harness validation tools.
+    required: true
+  - path: tools/lib/schema-lite.mjs
+    purpose: Lightweight schema validation helper used by harness validation tools.
+    required: true
+  - path: tools/lib/harness-state.mjs
+    purpose: Shared state transition sequence and report builder.
+    required: true
+  - path: tools/harness-state-runner.mjs
+    purpose: State transition runner that enforces pass, revise, or blocked stage statuses.
+    required: true
+  - path: tools/evaluate-research-quality.mjs
+    purpose: Research-quality evaluator for freshness, evidence table, fact/estimate/judgment, and uncertainty policy.
+    required: true
+  - path: tools/pre-handoff-gate.mjs
+    purpose: Pre-handoff gate that requires current validation before readiness claims.
+    required: true
+  - path: tools/validate-fixtures.mjs
+    purpose: Regression fixture runner for positive and negative validator fixtures.
+    required: true
+  - path: tools/build-portable-handoff-bundle.mjs
+    purpose: Portable handoff bundle builder that copies run artifacts and required workspace files into a transferable directory.
+    required: true
+  - path: schemas/harness-run/classification.schema.json
+    purpose: Machine-readable contract for first-action classification.
+    required: true
+  - path: schemas/harness-run/deep-interview-summary.schema.json
+    purpose: Machine-readable contract for Deep Interview summary artifacts.
+    required: true
+  - path: schemas/harness-run/pm-debate-summary.schema.json
+    purpose: Machine-readable contract for KIMI-active PM debate summaries.
+    required: true
+  - path: schemas/harness-run/compound-approval-candidates.schema.json
+    purpose: Machine-readable contract for Compound Extraction approval candidates.
+    required: true
+optional_files:
+  - path: fixtures/harness-runs/valid-local/harness-maker/classification.yaml
+    purpose: Passing fixture for local-only harness run validation.
+    required: false
+  - path: fixtures/harness-runs/invalid-missing-field/harness-maker/classification.yaml
+    purpose: Failing fixture for validator regression checks.
+    required: false
+  - path: fixtures/harness-runs/invalid-compound-active/harness-maker/classification.yaml
+    purpose: Failing fixture for Compound proposed-only governance checks.
+    required: false
+  - path: docs/harness/templates/prompts/harness-maker.md
+    purpose: Prompt template for operating this workspace as a harness-making harness.
+    required: false
+  - path: docs/harness/templates/startup/kimi-active-harness.md
+    purpose: Startup prompt for KIMI-active downstream chats.
+    required: false
+  - path: docs/harness/templates/startup/no-kimi-harness.md
+    purpose: Startup prompt for no-KIMI downstream chats.
+    required: false
+  - path: references/source-prompts/ai-harness-prompt.v1.4.1.md
+    purpose: Source prompt for KIMI-active mode when available.
+    required: false
+  - path: references/source-prompts/ai-harness-prompt.v1.4.1-no-kimi.md
+    purpose: Source prompt for no-KIMI mode when available.
+    required: false
+external_reference_corpora:
+  - path: handoff/reference-source-handles.md
+    source_handle: upstream_foundation_harness_prompt
+    bundle_candidate: references/upstream/ai-harness-prompt.v1.4.1.md
+    purpose: Upstream foundation harness prompt for KIMI-active behavior checks.
+    required_for:
+      - research_harness_design
+      - bootstrap_handoff
+  - path: handoff/reference-source-handles.md
+    source_handle: kimi_cli_pm_linear_ai_docs
+    bundle_candidate: references/upstream/2-kimi-cli-pm-linear-ai/docs/
+    purpose: General research-harness corpus covering cockpit architecture, source policy, validation, output formats, and research precedents beyond bio BD.
+    required_for:
+      - research_harness_design
+      - research
+      - bootstrap_handoff

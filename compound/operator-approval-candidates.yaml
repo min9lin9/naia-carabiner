@@ -1,0 +1,19 @@
+approval_candidates:
+  - id: compound-rule-001
+    proposal: "Make Compound Extraction required for friction level 2 or 3 harness-making runs."
+    reason: "Meaningful runs produce reusable lessons and future-rule candidates that should not be lost."
+    affected_files:
+      - docs/harness/harness-maker-harness.md
+      - docs/harness/compound-extraction-protocol.md
+      - tools/validate-harness-run.mjs
+    risk_level: low
+    status: proposed
+  - id: compound-rule-002
+    proposal: "Require validator pass evidence before handoff readiness claims."
+    reason: "Executable validation reduces drift between written contracts and produced run artifacts."
+    affected_files:
+      - README.md
+      - docs/harness/harness-maker-harness.md
+      - output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/handoff/startup-prompt.md
+    risk_level: low
+    status: proposed

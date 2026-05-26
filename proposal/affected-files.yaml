@@ -1,0 +1,74 @@
+canonical_files_added:
+  - path: docs/harness/harness-maker-harness.md
+    purpose: Canonical local contract for harness-making runs.
+  - path: docs/harness/deep-interview-intake-protocol.md
+    purpose: Intake clarification protocol for ambiguous requests.
+  - path: docs/harness/compound-extraction-protocol.md
+    purpose: Learning loop protocol for reusable lessons and proposed future rules.
+  - path: docs/harness/research-reference-corpus.md
+    purpose: Required reference corpus policy for research harness design.
+  - path: docs/harness/kimi-pm-iterative-debate-protocol.md
+    purpose: KIMI one-time collaborator critique and PM-level iterative debate protocol.
+  - path: docs/harness/templates/prompts/harness-maker.md
+    purpose: Prompt template for operating the harness-making harness.
+  - path: package.json
+    purpose: NPM scripts for harness validation.
+  - path: tools/validate-harness-run.mjs
+    purpose: YAML parser backed harness run validator.
+  - path: tools/lib/yaml-lite.mjs
+    purpose: Dependency-free YAML parser used by harness validation tools.
+  - path: tools/lib/schema-lite.mjs
+    purpose: Lightweight schema validation helper used by harness validation tools.
+  - path: tools/lib/harness-state.mjs
+    purpose: Shared state transition sequence and report builder.
+  - path: tools/harness-state-runner.mjs
+    purpose: State transition runner for pass/revise/blocked checkpoints.
+  - path: tools/evaluate-research-quality.mjs
+    purpose: Research-quality evaluator for freshness, evidence, fact/estimate/judgment, and uncertainty checks.
+  - path: tools/pre-handoff-gate.mjs
+    purpose: Pre-handoff gate requiring current validation before readiness claims.
+  - path: tools/validate-fixtures.mjs
+    purpose: Regression fixture runner for positive and negative validator fixtures.
+  - path: schemas/harness-run/classification.schema.json
+    purpose: Classification schema target.
+  - path: schemas/harness-run/deep-interview-summary.schema.json
+    purpose: Deep Interview summary schema target.
+  - path: schemas/harness-run/pm-debate-summary.schema.json
+    purpose: PM debate summary schema target.
+  - path: schemas/harness-run/compound-approval-candidates.schema.json
+    purpose: Compound approval candidates schema target.
+  - path: docs/superpowers/plans/2026-05-20-harness-maker-harness.md
+    purpose: Implementation plan for the meta-harness change.
+canonical_files_modified:
+  - path: README.md
+    purpose: Start path and operating notes now include the harness-maker contract.
+  - path: required-files.yaml
+    purpose: Manifest now includes the harness-maker contract and prompt template.
+run_artifacts_added:
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/intake.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/classification.yaml
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/proposal/harness-change-proposal.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/proposal/affected-files.yaml
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/proposal/acceptance-criteria.yaml
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/proposal/rollback-plan.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/reviews/cso-review.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/reviews/qa-review.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/handoff/downstream-chat-brief.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/handoff/required-files.yaml
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/handoff/startup-prompt.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/handoff/operator-checklist.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/archive/run-summary.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/compound/reusable-lessons.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/compound/proposed-future-rules.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/compound/recurring-failure-patterns.md
+  - path: output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker/compound/operator-approval-candidates.yaml
+  - path: fixtures/harness-runs/valid-local/harness-maker/classification.yaml
+  - path: fixtures/harness-runs/invalid-missing-field/harness-maker/classification.yaml
+  - path: fixtures/harness-runs/invalid-compound-active/harness-maker/classification.yaml
+external_records_written: false
+external_reference_corpora:
+  - path: /Users/burt/Documents/Codex/2026-05-15/gpt-5-5-prompt-enhancement-users/prompt-versions/ai-harness-prompt.v1.4.1.md
+  - path: /Users/burt/Documents/Codex/2026-05-18/2-kimi-cli-pm-linear-ai/docs/
+external_skill_references:
+  - url: https://github.com/devbrother2024/skills/blob/main/deep-interview/SKILL.md
+    purpose: Source skill for one-question-at-a-time intake clarification.

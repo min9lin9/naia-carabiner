@@ -1,0 +1,3 @@
+affected_files:
+  - path: fixtures/harness-runs/valid-local/harness-maker/classification.yaml
+    change_type: fixture

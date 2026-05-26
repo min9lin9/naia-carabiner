@@ -1,0 +1,73 @@
+acceptance_criteria:
+  - id: AC-001
+    criterion: "Every harness-making run starts with required classification fields."
+    evidence: "classification.yaml and handoff/startup-prompt.md include the required fields."
+    status: pass
+  - id: AC-002
+    criterion: "Research Lead remains coordinator-only."
+    evidence: "harness-maker contract and downstream brief preserve role boundaries."
+    status: pass
+  - id: AC-003
+    criterion: "PM debate, Synthesizer, CSO, and QA remain separate roles."
+    evidence: "handoff/downstream-chat-brief.md and reviews preserve separate responsibilities."
+    status: pass
+  - id: AC-004
+    criterion: "No real Linear or Paperclip records are written without operator approval."
+    evidence: "This run produced local files only."
+    status: pass
+  - id: AC-005
+    criterion: "Handoff packet is sufficient for another chat to start."
+    evidence: "handoff/startup-prompt.md, handoff/required-files.yaml, and handoff/operator-checklist.md are present."
+    status: pass
+  - id: AC-006
+    criterion: "Research harness work considers BD, finance, company, and free global-report formats."
+    evidence: "docs/harness/research-reference-corpus.md and handoff/startup-prompt.md require these format families."
+    status: pass
+  - id: AC-007
+    criterion: "KIMI PM Linear AI docs are treated as a general research-harness corpus, not bio BD-only."
+    evidence: "docs/harness/research-reference-corpus.md and handoff/downstream-chat-brief.md state /Users/burt/Documents/Codex/2026-05-18/2-kimi-cli-pm-linear-ai/docs/ is required beyond bio BD."
+    status: pass
+  - id: AC-008
+    criterion: "The upstream foundation prompt is recorded for research harness behavior checks."
+    evidence: "docs/harness/research-reference-corpus.md records ai-harness-prompt.v1.4.1.md as the foundation prompt."
+    status: pass
+  - id: AC-009
+    criterion: "KIMI-active runs use KIMI first as collaborator critique and then as PM-level iterative debate participant."
+    evidence: "docs/harness/kimi-pm-iterative-debate-protocol.md defines both phases, and handoff/startup-prompt.md requires them."
+    status: pass
+  - id: AC-010
+    criterion: "KIMI PM debate continues until no additional questions remain or the 20-round cap is reached."
+    evidence: "docs/harness/kimi-pm-iterative-debate-protocol.md defines stop conditions, participant ready_for_synthesis values, round_cap_reached, and max_rounds: 20."
+    status: pass
+  - id: AC-011
+    criterion: "Ambiguous requests use Deep Interview before KIMI critique or PM-level debate."
+    evidence: "docs/harness/deep-interview-intake-protocol.md and handoff/startup-prompt.md require the intake gate when goal, scope, constraints, completion criteria, or impact surface is unclear. The protocol requires one question at a time and preserves open questions."
+    status: pass
+  - id: AC-012
+    criterion: "Clear requests can skip Deep Interview with a recorded reason."
+    evidence: "docs/harness/deep-interview-intake-protocol.md defines skip conditions and requires deep_interview_required plus deep_interview_reason."
+    status: pass
+  - id: AC-013
+    criterion: "Harness runs can be validated before handoff."
+    evidence: "tools/validate-harness-run.mjs parses YAML artifacts, applies schema-lite checks, validates the current run, validates a passing fixture, and rejects intentionally failing fixtures."
+    status: pass
+  - id: AC-014
+    criterion: "Meaningful runs perform Compound Extraction before archive."
+    evidence: "docs/harness/compound-extraction-protocol.md defines required compound artifacts, and the current run includes reusable lessons, proposed future rules, recurring failure patterns, and operator approval candidates."
+    status: pass
+  - id: AC-015
+    criterion: "Compound proposed future rules do not activate automatically."
+    evidence: "compound/operator-approval-candidates.yaml keeps candidates at status: proposed, and fixtures/harness-runs/invalid-compound-active/harness-maker fails when a candidate is active."
+    status: pass
+  - id: AC-016
+    criterion: "State transitions emit pass, revise, or blocked and prevent handoff when any stage is not pass."
+    evidence: "tools/harness-state-runner.mjs and npm run state:current report every current stage as pass."
+    status: pass
+  - id: AC-017
+    criterion: "Research-quality evaluation checks freshness, evidence table policy, and fact/estimate/judgment separation."
+    evidence: "tools/evaluate-research-quality.mjs and npm run research-quality:current validate source freshness/source-date policy, evidence table policy, fact/estimate/judgment separation, and uncertainty language."
+    status: pass
+  - id: AC-018
+    criterion: "Pre-handoff gate requires npm run validate:current before handoff readiness."
+    evidence: "tools/pre-handoff-gate.mjs runs npm --silent run validate:current for the current package before state and research-quality checks."
+    status: pass

@@ -1,0 +1,37 @@
+{
+  "name": "naia-carabiner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Bun + TypeScript harness layer for naia-agent KIMI, OpenAI API, and Codex SDK auth profiles.",
+  "scripts": {
+    "test": "bun test",
+    "test:node": "node --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "manifest:kimi": "bun src/cli.ts kimi-api-key --format manifest",
+    "env:kimi": "bun src/cli.ts kimi-api-key --format env",
+    "manifest:openai": "bun src/cli.ts openai-api-key --format manifest",
+    "env:openai": "bun src/cli.ts openai-api-key --format env",
+    "profile:codex": "bun src/cli.ts codex-sdk --format profile",
+    "validate:harness-run": "node tools/validate-harness-run.mjs",
+    "validate:bundle": "node tools/validate-harness-run.mjs .",
+    "validate:current": "node tools/validate-harness-run.mjs output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker",
+    "validate:fixtures": "node tools/validate-fixtures.mjs",
+    "state:bundle": "node tools/harness-state-runner.mjs .",
+    "state:current": "node tools/harness-state-runner.mjs output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker",
+    "research-quality:bundle": "node tools/evaluate-research-quality.mjs .",
+    "research-quality:current": "node tools/evaluate-research-quality.mjs output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker",
+    "prehandoff:bundle": "node tools/pre-handoff-gate.mjs .",
+    "prehandoff:current": "node tools/pre-handoff-gate.mjs output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker",
+    "bundle:current": "node tools/build-portable-handoff-bundle.mjs output/harness-runs/2026-05-20-harness-maker-bootstrap/harness-maker",
+    "ci:current": "npm run prehandoff:current && npm run validate:fixtures"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "latest",
+    "typescript": "latest"
+  },
+  "dependencies": {
+    "@openai/codex-sdk": "latest"
+  }
+}

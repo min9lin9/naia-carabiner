@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://har-maker.local/schemas/harness-run/compound-approval-candidates.schema.json",
+  "title": "Compound Approval Candidates",
+  "type": "object",
+  "required": ["approval_candidates"],
+  "properties": {
+    "approval_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "proposal", "reason", "affected_files", "risk_level", "status"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "proposal": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 },
+          "affected_files": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "risk_level": { "enum": ["low", "medium", "high"] },
+          "status": { "const": "proposed" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

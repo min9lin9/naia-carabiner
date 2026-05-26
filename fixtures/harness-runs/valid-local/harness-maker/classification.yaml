@@ -1,0 +1,12 @@
+harness_variant: local-only
+variant_source_prompt: "fixture valid local"
+purpose_variant: local_only
+task_profile: trivial
+friction_level: 1
+kimi_cli_decision: skip
+kimi_cli_reason: "Fixture validates local-only path without KIMI artifacts."
+deep_interview_required: false
+deep_interview_reason: "Fixture request is precise."
+compound_extraction_required: false
+compound_extraction_reason: "Fixture is local_only with trivial task profile and friction level 1."
+evidence_gate_status: pass

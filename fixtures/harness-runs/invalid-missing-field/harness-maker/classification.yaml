@@ -1,0 +1,10 @@
+harness_variant: local-only
+variant_source_prompt: "fixture invalid missing field"
+purpose_variant: local_only
+task_profile: trivial
+friction_level: 1
+kimi_cli_decision: skip
+kimi_cli_reason: "Fixture should fail because deep_interview_reason is missing."
+deep_interview_required: false
+compound_extraction_required: false
+compound_extraction_reason: "Fixture is local_only with trivial task profile and friction level 1."

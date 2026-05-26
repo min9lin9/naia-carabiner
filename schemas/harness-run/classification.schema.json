@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://har-maker.local/schemas/harness-run/classification.schema.json",
+  "title": "Harness Run Classification",
+  "type": "object",
+  "required": [
+    "harness_variant",
+    "variant_source_prompt",
+    "purpose_variant",
+    "task_profile",
+    "friction_level",
+    "kimi_cli_decision",
+    "kimi_cli_reason",
+    "deep_interview_required",
+    "deep_interview_reason",
+    "compound_extraction_required",
+    "compound_extraction_reason"
+  ],
+  "properties": {
+    "harness_variant": {
+      "enum": ["kimi-active", "no-kimi", "local-only"]
+    },
+    "variant_source_prompt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose_variant": {
+      "enum": ["research", "product_decision", "implementation", "release", "bootstrap_handoff", "local_only"]
+    },
+    "task_profile": {
+      "enum": ["trivial", "normal", "ui", "runtime", "research", "high-risk"]
+    },
+    "friction_level": {
+      "enum": [1, 2, 3]
+    },
+    "kimi_cli_decision": {
+      "enum": ["use", "skip"]
+    },
+    "kimi_cli_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "deep_interview_required": {
+      "type": "boolean"
+    },
+    "deep_interview_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compound_extraction_required": {
+      "type": "boolean"
+    },
+    "compound_extraction_reason": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://har-maker.local/schemas/harness-run/pm-debate-summary.schema.json",
+  "title": "PM Debate Summary",
+  "type": "object",
+  "required": [
+    "debate_rounds_completed",
+    "round_cap_reached",
+    "participants_ready_for_synthesis",
+    "unresolved_questions"
+  ],
+  "properties": {
+    "debate_rounds_completed": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "round_cap_reached": {
+      "type": "boolean"
+    },
+    "participants_ready_for_synthesis": {
+      "type": "boolean"
+    },
+    "unresolved_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "kimi_pm_final_position": {
+      "type": "string"
+    },
+    "market_opportunity_pm_final_position": {
+      "type": "string"
+    },
+    "execution_risk_pm_final_position": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

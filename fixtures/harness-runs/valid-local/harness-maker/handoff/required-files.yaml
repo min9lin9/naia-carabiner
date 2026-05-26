@@ -1,0 +1,15 @@
+required_files:
+  - path: intake.md
+  - path: classification.yaml
+  - path: proposal/harness-change-proposal.md
+  - path: proposal/affected-files.yaml
+  - path: proposal/acceptance-criteria.yaml
+  - path: proposal/rollback-plan.md
+  - path: reviews/cso-review.md
+  - path: reviews/qa-review.md
+  - path: handoff/downstream-chat-brief.md
+  - path: handoff/startup-prompt.md
+  - path: handoff/operator-checklist.md
+  - path: archive/run-summary.md
+optional_files: []
+external_reference_corpora: []
