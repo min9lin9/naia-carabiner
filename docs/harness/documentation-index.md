@@ -23,6 +23,7 @@ This index is the contributor entry point for `naia-carabiner`.
 
 - [PM Debate Decision Packet](./pm-debate-decision-packet.md): decision record for Kimi debate gating and first implementation scope.
 - [Upstream naia-agent PR Plan](./upstream-naia-agent-pr-plan.md): proposed contribution route into `nextain/naia-agent`.
+- [nextain Maintainer Review Request](./nextain-maintainer-review-request.md): copy-ready upstream issue and draft PR review request packet.
 
 ## Bootstrap Harness References
 
